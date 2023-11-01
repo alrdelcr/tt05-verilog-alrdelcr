@@ -17,6 +17,6 @@ module tt_um_seven_segment_seconds #( parameter MAX_COUNT = 24'd10_000_000 ) (
 
 
     // instantiate segment display
-    mat_vec_mult vec1(.vector(ui_in), .result(uo_out));
+    mat_vec_mult vec1(.vector(ui_in), .result(uo_out), .clk(clk));
 
 endmodule
