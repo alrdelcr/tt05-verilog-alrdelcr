@@ -1,5 +1,5 @@
 `default_nettype none
-/*
+
 module mat_vec_mult (
     input wire [7:0] vector, // input vector that has 8 bits to represent 0s or 1s
     input  wire       clk,      // clock
@@ -36,7 +36,7 @@ always@(posedge clk) begin
 end
 
 endmodule
-*/
+/*
 module mat_vec_mult (
     input wire [7:0] vector, // input vector that has 8 bits to represent 0s or 1s
     input wire clk,         // clock
@@ -72,3 +72,4 @@ always @(posedge clk) begin
 end
 
 endmodule
+*/
