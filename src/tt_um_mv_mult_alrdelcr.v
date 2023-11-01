@@ -14,6 +14,8 @@ module tt_um_mv_mult_alrdelcr #( parameter MAX_COUNT = 24'd10_000_000 ) (
    
     // use bidirectionals as outputs
     assign uio_oe = 8'b11111111;
+    assign uio_out = 8'b11111111;
+
 
 
     // instantiate segment display

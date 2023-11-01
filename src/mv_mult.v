@@ -1,5 +1,5 @@
 `default_nettype none
-
+/*
 module mat_vec_mult (
     input wire [7:0] vector, // input vector that has 8 bits to represent 0s or 1s
     input  wire       clk,      // clock
@@ -36,4 +36,39 @@ always@(posedge clk) begin
 end
 
 endmodule
+*/
+module mat_vec_mult (
+    input wire [7:0] vector, // input vector that has 8 bits to represent 0s or 1s
+    input wire clk,         // clock
+    output reg [7:0] result // final calculated bit vector
+);
 
+reg state; 
+reg old_state;
+
+// Define and initialize your 6x6 matrix
+reg [7:0] matrix [0:5][0:5];
+initial begin
+    for (int i = 0; i < 6; i = i + 1) begin
+        for (int j = 0; j < 6; j = j + 1) begin
+            matrix[i][j] = i * 16 + j + 1;
+        end
+    end
+end
+
+always @(posedge clk) begin
+    old_state <= state; // move the state to old_state
+    state <= vector[0]; // move the new vector[0] value 
+
+    if (state != old_state) begin
+        result <= 8'b0; // Initialize result with zeros
+
+        for (int i = 0; i < 6; i = i + 1) begin
+            for (int j = 2; j < 8; j = j + 1) begin
+                result[i] <= result[i] + (vector[j] * matrix[j-2][i]);
+            end
+        end
+    end
+end
+
+endmodule
