@@ -6,19 +6,20 @@ module mat_vec_mult (
     output reg [7:0] result // final calculated bit vector 
 );
 
-reg state;
-
+reg state; 
 reg old_state;
 
-// makes a matrix that is populated with 8-bit values from 0x01 to 0x40 in hex.
-reg [7:0] matrix [0:5][0:5] = {
-    {8'h01, 8'h02, 8'h03, 8'h04, 8'h05, 8'h06},
-    {8'h07, 8'h08, 8'h09, 8'h0A, 8'h0B, 8'h0C},
-    {8'h0D, 8'h0E, 8'h0F, 8'h10, 8'h11, 8'h12},
-    {8'h13, 8'h14, 8'h15, 8'h16, 8'h17, 8'h18},
-    {8'h19, 8'h1A, 8'h1B, 8'h1C, 8'h1D, 8'h1E},
-    {8'h1F, 8'h20, 8'h21, 8'h22, 8'h23, 8'h24}
-};
+// Define your 6x6 matrix
+reg [7:0] matrix [0:5][0:5];
+
+// Initialize the matrix with 8-bit values from 0x01 to 0x40 in hex
+initial begin
+    for (int i = 0; i < 6; i = i + 1) begin
+        for (int j = 0; j < 6; j = j + 1) begin
+            matrix[i][j] = i * 16 + j + 1;
+        end
+    end
+end
 
 
 always@(posedge clk) begin
